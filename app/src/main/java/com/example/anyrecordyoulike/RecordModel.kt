@@ -6,16 +6,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.firestore.DocumentId
 import com.google.firebase.firestore.firestore
 
-data class Song(
-    @DocumentId
-    var id: String = "",
-    val title: String = "",
-    val artist: String = "",
-    val description: String = "",
-    val wishlisted: Boolean = false,
-    val favorited: Boolean = false,
-    val imageUrl: String = ""
-)
+
 
 enum class TabFilter {
     FAVORITES, COLLECTION, WISHLIST
@@ -44,12 +35,13 @@ class RecordModel : ViewModel() {
     fun bought(song : Song){
         db.collection("Records").document(song.id).update("wishlisted", false)
     }
-    fun addRecord(title: String, artist: String, imageUrl: String, wishlisted: Boolean) {
+    fun addRecord(title: String, artist: String, imageUrl: String, wishlisted: Boolean, description: String) {
         val newSong = Song(
             title = title,
             artist = artist,
             imageUrl = imageUrl,
-            wishlisted = wishlisted
+            wishlisted = wishlisted,
+            description = description
         )
         db.collection("Records").add(newSong)
     }
