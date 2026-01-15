@@ -1,0 +1,6 @@
+Dodat tab za wishlist i favorites
+Like button dodaje u favorites 
+Detail screen
+wishlist omogucen samo prilikom kreacije ploce
+dodat godine i opis sve treba moc unijet
+
