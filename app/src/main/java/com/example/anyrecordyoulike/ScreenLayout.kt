@@ -1,4 +1,5 @@
 package com.example.anyrecordyoulike
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -23,6 +25,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -42,7 +45,14 @@ fun ScreenLayout(viewModel: RecordModel) {
     var showAdd by remember { mutableStateOf(false) }
     var selectedTab by remember { mutableStateOf(TabFilter.COLLECTION) }
     var songId by remember { mutableStateOf<String?>(null) }
+    val systemUiController = rememberSystemUiController()
 
+    SideEffect {
+        systemUiController.setStatusBarColor(
+            color = Color.Transparent,
+            darkIcons = true
+        )
+    }
     val selectedSong = songId?.let { id ->
         viewModel.recOnDisplay.find { it.id == id }
     }
@@ -64,7 +74,7 @@ fun ScreenLayout(viewModel: RecordModel) {
         )
     } else {
         Box(modifier = Modifier.fillMaxSize()) {
-            Column(modifier = Modifier.fillMaxSize()) {
+            Column(modifier = Modifier.fillMaxSize().statusBarsPadding()) {
                 // Search Bar
                 Row(
                     modifier = Modifier
