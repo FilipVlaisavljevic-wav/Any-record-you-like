@@ -1,8 +1,8 @@
-package com.example.anyrecordyoulike
+package com.example.anyrecordyoulike.data
 
 import com.google.firebase.firestore.DocumentId
 
-data class Song(
+data class Vinyl(
     @DocumentId
     var id: String = "",
     val title: String = "",

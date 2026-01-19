@@ -6,13 +6,14 @@ import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
+import com.example.anyrecordyoulike.data.Vinyl
 import com.example.anyrecordyoulike.ui.theme.PrimaryActionCol
 
 @Composable
-fun Like(onFavorite: () -> Unit, song: Song){
+fun Like(onFavorite: () -> Unit, vinyl: Vinyl){
     IconButton(onClick = onFavorite) {
         Icon(
-            imageVector = if (song.favorited) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+            imageVector = if (vinyl.favorited) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
             contentDescription = "Favorite",
             tint = PrimaryActionCol
         )

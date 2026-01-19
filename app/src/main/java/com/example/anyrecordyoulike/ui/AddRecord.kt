@@ -1,4 +1,4 @@
-package com.example.anyrecordyoulike
+package com.example.anyrecordyoulike.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row

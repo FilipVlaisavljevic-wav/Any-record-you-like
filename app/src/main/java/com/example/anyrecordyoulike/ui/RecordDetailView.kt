@@ -20,8 +20,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.MusicNote
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -41,6 +39,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
+import com.example.anyrecordyoulike.data.Vinyl
 import com.example.anyrecordyoulike.ui.theme.BackgroundCol
 import com.example.anyrecordyoulike.ui.theme.PrimaryActionCol
 import com.example.anyrecordyoulike.ui.theme.PrimaryTextCol
@@ -49,7 +48,7 @@ import com.example.anyrecordyoulike.ui.theme.SurfaceCol
 
 @Composable
 fun RecordDetailView(
-    song: Song,
+    vinyl: Vinyl,
     onDismiss: () -> Unit,
     onDelete: () -> Unit,
     onFavorite: () -> Unit,
@@ -84,7 +83,7 @@ fun RecordDetailView(
                     color = PrimaryTextCol,
                     modifier = Modifier.weight(1f)
                 )
-                Like(onFavorite = onFavorite, song = song)
+                Like(onFavorite = onFavorite, vinyl = vinyl)
             }
 
             LazyColumn(
@@ -101,9 +100,9 @@ fun RecordDetailView(
                             .background(SurfaceCol),
                         contentAlignment = Alignment.Center
                     ) {
-                        if (song.imageUrl.isNotEmpty()) {
+                        if (vinyl.imageUrl.isNotEmpty()) {
                             Image(
-                                painter = rememberAsyncImagePainter(song.imageUrl),
+                                painter = rememberAsyncImagePainter(vinyl.imageUrl),
                                 contentDescription = "Album Cover",
                                 contentScale = ContentScale.Crop,
                                 modifier = Modifier.fillMaxSize()
@@ -122,14 +121,14 @@ fun RecordDetailView(
                 item {
                     Column {
                         Text(
-                            text = song.title,
+                            text = vinyl.title,
                             style = MaterialTheme.typography.headlineMedium,
                             fontWeight = FontWeight.Bold,
                             color = PrimaryTextCol
                         )
                         Spacer(modifier = Modifier.height(4.dp))
                         Text(
-                            text = song.artist,
+                            text = vinyl.artist,
                             style = MaterialTheme.typography.titleLarge,
                             color = SecondaryTextCol
                         )
@@ -141,7 +140,7 @@ fun RecordDetailView(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        if (song.wishlisted) {
+                        if (vinyl.wishlisted) {
                             Box(
                                 modifier = Modifier
                                     .clip(RoundedCornerShape(8.dp))
@@ -189,7 +188,7 @@ fun RecordDetailView(
                             )
                             Spacer(modifier = Modifier.height(8.dp))
                             Text(
-                                text = song.description.ifEmpty { "No description available." },
+                                text = vinyl.description.ifEmpty { "No description available." },
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = SecondaryTextCol,
                                 lineHeight = 20.sp
@@ -211,7 +210,7 @@ fun RecordDetailView(
                     .padding(16.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                if (song.wishlisted) {
+                if (vinyl.wishlisted) {
                     Button(
                         onClick = onBought,
                         modifier = Modifier.fillMaxWidth(),
