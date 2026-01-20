@@ -43,6 +43,7 @@ android {
 }
 
 dependencies {
+    implementation("androidx.navigation:navigation-compose:2.8.5")
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.32.0")
     implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
     implementation("com.google.firebase:firebase-firestore-ktx")
