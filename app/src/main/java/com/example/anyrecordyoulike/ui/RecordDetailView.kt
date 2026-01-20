@@ -1,4 +1,4 @@
-package com.example.anyrecordyoulike
+package com.example.anyrecordyoulike.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -14,12 +14,14 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.EditAttributes
 import androidx.compose.material.icons.filled.MusicNote
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -39,6 +41,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
+import com.example.anyrecordyoulike.Like
 import com.example.anyrecordyoulike.data.Vinyl
 import com.example.anyrecordyoulike.ui.theme.BackgroundCol
 import com.example.anyrecordyoulike.ui.theme.PrimaryActionCol
@@ -52,7 +55,8 @@ fun RecordDetailView(
     onDismiss: () -> Unit,
     onDelete: () -> Unit,
     onFavorite: () -> Unit,
-    onBought: () -> Unit
+    onBought: () -> Unit,
+    onEdit: () -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -83,6 +87,13 @@ fun RecordDetailView(
                     color = PrimaryTextCol,
                     modifier = Modifier.weight(1f)
                 )
+                IconButton(onClick = onEdit) {
+                    Icon(
+                        Icons.Default.EditAttributes,
+                        contentDescription = "Edit",
+                        tint = PrimaryActionCol
+                    )
+                }
                 Like(onFavorite = onFavorite, vinyl = vinyl)
             }
 
@@ -95,7 +106,7 @@ fun RecordDetailView(
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(300.dp)
+                            .height(350.dp)
                             .clip(RoundedCornerShape(16.dp))
                             .background(SurfaceCol),
                         contentAlignment = Alignment.Center
@@ -104,8 +115,8 @@ fun RecordDetailView(
                             Image(
                                 painter = rememberAsyncImagePainter(vinyl.imageUrl),
                                 contentDescription = "Album Cover",
-                                contentScale = ContentScale.Crop,
-                                modifier = Modifier.fillMaxSize()
+                                contentScale = ContentScale.FillWidth,
+                                modifier = Modifier.fillMaxWidth().wrapContentHeight()
                             )
                         } else {
                             Icon(

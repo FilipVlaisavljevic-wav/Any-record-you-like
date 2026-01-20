@@ -1,4 +1,4 @@
-package com.example.anyrecordyoulike
+package com.example.anyrecordyoulike.ui
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 import androidx.compose.foundation.border
@@ -33,13 +33,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.example.anyrecordyoulike.TabRow
 import com.example.anyrecordyoulike.data.repo.TabFilter
 import com.example.anyrecordyoulike.ui.theme.PrimaryActionCol
 import com.example.anyrecordyoulike.ui.theme.PrimaryTextCol
 import com.example.anyrecordyoulike.ui.theme.SecondaryTextCol
 import com.example.anyrecordyoulike.ui.theme.SurfaceCol
 import com.example.anyrecordyoulike.data.model.RecordModel
-import com.example.anyrecordyoulike.ui.AddRecord
+import com.example.anyrecordyoulike.ui.theme.BackgroundCol
 import com.example.anyrecordyoulike.ui.theme.RecordBlock
 
 @Composable
@@ -47,32 +48,36 @@ fun ScreenLayout(viewModel: RecordModel) {
     var searchBy by remember { mutableStateOf("") }
     var showAdd by remember { mutableStateOf(false) }
     var selectedTab by remember { mutableStateOf(TabFilter.COLLECTION) }
-    var songId by remember { mutableStateOf<String?>(null) }
+    var recordId by remember { mutableStateOf<String?>(null) }
     val systemUiController = rememberSystemUiController()
 
     SideEffect {
         systemUiController.setStatusBarColor(
-            color = Color.Transparent,
+            color = BackgroundCol,
             darkIcons = true
         )
     }
-    val selectedSong = songId?.let { id ->
+    val selectedRecord = recordId?.let { id ->
         viewModel.recOnDisplay.find { it.id == id }
     }
-    if (selectedSong != null) {
+    if (selectedRecord != null) {
         RecordDetailView(
-            vinyl = selectedSong,
-            onDismiss = { songId = null },
+            vinyl = selectedRecord,
+            onDismiss = { recordId = null },
             onDelete = {
-                viewModel.removeRecord(selectedSong.id)
-                songId = null
+
+                viewModel.removeRecord(selectedRecord.id)
+                recordId = null
             },
             onFavorite = {
-                viewModel.toggleFavorite(selectedSong)
+                viewModel.toggleFavorite(selectedRecord)
             },
             onBought = {
-                viewModel.bought(selectedSong)
-                songId = null
+                viewModel.bought(selectedRecord)
+                recordId = null
+            },
+            onEdit = {
+                recordId = null
             }
         )
     } else {
@@ -106,7 +111,6 @@ fun ScreenLayout(viewModel: RecordModel) {
                     )
                 }
 
-                // Tab Row
                 TabRow(
                     selectedTab = selectedTab,
                     onTabSelected = {
@@ -115,7 +119,6 @@ fun ScreenLayout(viewModel: RecordModel) {
                     }
                 )
 
-                // List
                 LazyColumn(
                     modifier = Modifier.weight(1f),
                     contentPadding = PaddingValues(start = 16.dp, end = 16.dp, bottom = 80.dp),
@@ -137,7 +140,7 @@ fun ScreenLayout(viewModel: RecordModel) {
                     items(viewModel.recOnDisplay) { record ->
                         RecordBlock(
                             record = record,
-                            onClick = { songId = record.id },
+                            onClick = { recordId = record.id },
                             onDelete = { viewModel.removeRecord(record.id) },
                             onFavorite = { viewModel.toggleFavorite(record) }
                         )
