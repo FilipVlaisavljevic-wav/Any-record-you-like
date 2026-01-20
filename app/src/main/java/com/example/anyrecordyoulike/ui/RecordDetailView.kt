@@ -42,6 +42,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.example.anyrecordyoulike.Like
 import com.example.anyrecordyoulike.data.Vinyl
 import com.example.anyrecordyoulike.ui.theme.BackgroundCol
 import com.example.anyrecordyoulike.ui.theme.PrimaryActionCol
@@ -87,17 +88,7 @@ import com.example.anyrecordyoulike.ui.theme.SurfaceCol
                 color = PrimaryTextCol,
                 modifier = Modifier.align(Alignment.Center)
             )
-
-            IconButton(
-                onClick = onFavorite,
-                modifier = Modifier.align(Alignment.CenterEnd)
-            ) {
-                Icon(
-                    imageVector = if (vinyl.favorited) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
-                    contentDescription = "Favorite",
-                    tint = PrimaryActionCol
-                )
-            }
+            Like(onFavorite = onFavorite, vinyl = vinyl, modifier = Modifier.align(Alignment.CenterEnd))
         }
 
         // Album artwork

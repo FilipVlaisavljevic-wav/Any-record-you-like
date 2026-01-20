@@ -91,7 +91,7 @@ fun RecordBlock(record: Vinyl, onClick: () -> Unit, onDelete: () -> Unit, onFavo
                 }
             }
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Like(onFavorite = onFavorite, vinyl = record)
+                Like(onFavorite = onFavorite, vinyl = record, modifier = Modifier)
             }
         }
     }

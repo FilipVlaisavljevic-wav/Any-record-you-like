@@ -10,8 +10,8 @@ import com.example.anyrecordyoulike.data.Vinyl
 import com.example.anyrecordyoulike.ui.theme.PrimaryActionCol
 
 @Composable
-fun Like(onFavorite: () -> Unit, vinyl: Vinyl){
-    IconButton(onClick = onFavorite) {
+fun Like(onFavorite: () -> Unit, vinyl: Vinyl, modifier: androidx.compose.ui.Modifier){
+    IconButton(onClick = onFavorite, modifier = modifier) {
         Icon(
             imageVector = if (vinyl.favorited) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
             contentDescription = "Favorite",
