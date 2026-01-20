@@ -28,8 +28,14 @@ fun Navigation(viewModel: RecordModel, navController: NavHostController) {
                         viewModel.bought(record)
                         navController.popBackStack()
                     },
-                    onEdit = { /* TODO */ }
+                    onEdit = { navController.navigate("edit/${recordId}") }
                 )
+            }
+        }
+        composable("edit/{recordId}") {backStackEntry -> val recordId = backStackEntry.arguments?.getString("recordId")
+            val record = viewModel.recOnDisplay.find { it.id == recordId }
+            if (record != null) {
+                EditDetailView()
             }
         }
     }

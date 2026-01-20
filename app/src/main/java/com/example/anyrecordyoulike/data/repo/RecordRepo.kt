@@ -14,7 +14,7 @@ enum class TabFilter {
 
 class RecordRepo {
 
-    private val db = Firebase.firestore
+     val db = Firebase.firestore
 
     fun listenToRecords(onUpdate: (List<Vinyl>) -> Unit) {
         db.collection("Records").addSnapshotListener { snapshot, e ->
