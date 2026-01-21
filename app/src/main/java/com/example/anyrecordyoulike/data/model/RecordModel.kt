@@ -3,9 +3,10 @@ package com.example.anyrecordyoulike.data.model
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.anyrecordyoulike.TabFilter
 import com.example.anyrecordyoulike.data.Vinyl
 import com.example.anyrecordyoulike.data.repo.RecordRepo
-import com.example.anyrecordyoulike.data.repo.TabFilter
+
 import kotlinx.coroutines.launch
 
 class RecordModel(

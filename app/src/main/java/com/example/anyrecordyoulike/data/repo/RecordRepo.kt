@@ -8,9 +8,7 @@ import com.google.firebase.firestore.firestore
 
 
 
-enum class TabFilter {
-    FAVORITES, COLLECTION, WISHLIST
-}
+
 
 class RecordRepo {
 

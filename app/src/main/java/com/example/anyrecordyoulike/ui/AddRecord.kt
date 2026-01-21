@@ -37,7 +37,7 @@ fun AddRecord(onDismiss: () -> Unit, onConfirm:(String, String, String, String, 
     var wishlisted by remember { mutableStateOf(false) }
 
     AlertDialog(
-        onDismissRequest = onDismiss,
+        onDismissRequest = { },
         title = { Text("New Vinyl", color = PrimaryTextCol, fontWeight = FontWeight.Bold) },
         text = {
             Column {
