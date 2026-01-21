@@ -1,4 +1,5 @@
 package com.example.anyrecordyoulike.ui
+import android.widget.Toast
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 import androidx.compose.foundation.border
@@ -32,6 +33,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.anyrecordyoulike.TabRow
@@ -50,7 +52,8 @@ fun ScreenLayout(viewModel: RecordModel, navController: NavController) {
     var showAdd by remember { mutableStateOf(false) }
     var selectedTab by remember { mutableStateOf(TabFilter.COLLECTION) }
     val systemUiController = rememberSystemUiController()
-
+    var sorter by remember { mutableStateOf(false) }
+    val context = LocalContext.current
     SideEffect {
         systemUiController.setStatusBarColor(
             color = BackgroundCol,
@@ -125,7 +128,11 @@ fun ScreenLayout(viewModel: RecordModel, navController: NavController) {
         }
 
         FloatingActionButton(
-            onClick = { viewModel.sort(sorter = true) },
+            onClick = { sorter = !sorter
+                viewModel.sort(sorter)
+                Toast.makeText(context, "Sorted by ${if (sorter) "Artist" else "Title"}",
+                    Toast.LENGTH_SHORT).show()
+                      },
             containerColor = PrimaryActionCol,
             contentColor = Color.White,
             modifier = Modifier
@@ -138,6 +145,7 @@ fun ScreenLayout(viewModel: RecordModel, navController: NavController) {
                 tint = Color.White
             )
         }
+
 
         FloatingActionButton(
             onClick = { showAdd = true },

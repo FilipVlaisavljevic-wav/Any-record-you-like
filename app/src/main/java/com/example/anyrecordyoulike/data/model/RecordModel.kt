@@ -87,4 +87,7 @@ class RecordModel(
         recOnDisplay.clear()
         recOnDisplay.addAll(sorted)
     }
+    fun update(updatedVinyl: Vinyl) {
+        repository.update(updatedVinyl)
+    }
 }

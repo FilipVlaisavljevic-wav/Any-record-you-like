@@ -47,4 +47,7 @@ class RecordRepo {
         db.collection("Records").document(vinyl.id)
             .update("wishlisted", false)
     }
+    fun update(vinyl: Vinyl) {
+        db.collection("Records").document(vinyl.id).set(vinyl)
+    }
 }

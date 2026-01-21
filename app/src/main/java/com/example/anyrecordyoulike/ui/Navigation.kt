@@ -35,7 +35,9 @@ fun Navigation(viewModel: RecordModel, navController: NavHostController) {
         composable("edit/{recordId}") {backStackEntry -> val recordId = backStackEntry.arguments?.getString("recordId")
             val record = viewModel.recOnDisplay.find { it.id == recordId }
             if (record != null) {
-                EditDetailView()
+                EditDetailView(vinyl = record, onDismiss = { navController.popBackStack() },
+                    onSave = {updatedRecord -> viewModel.update(updatedRecord)
+                    navController.popBackStack()})
             }
         }
     }
