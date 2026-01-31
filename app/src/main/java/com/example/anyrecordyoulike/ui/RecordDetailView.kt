@@ -59,7 +59,6 @@ import com.example.anyrecordyoulike.ui.theme.SurfaceCol
             .background(BackgroundCol)
             .verticalScroll(rememberScrollState())
     ) {
-        // Top bar
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -86,7 +85,6 @@ import com.example.anyrecordyoulike.ui.theme.SurfaceCol
             Like(onFavorite = onFavorite, vinyl = vinyl, modifier = Modifier.align(Alignment.CenterEnd))
         }
 
-        // Album artwork
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -105,7 +103,6 @@ import com.example.anyrecordyoulike.ui.theme.SurfaceCol
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        // Title
         Text(
             text = vinyl.title,
             style = MaterialTheme.typography.headlineMedium,
@@ -116,7 +113,6 @@ import com.example.anyrecordyoulike.ui.theme.SurfaceCol
 
         Spacer(modifier = Modifier.height(4.dp))
 
-        // Artist
         Text(
             text = vinyl.artist,
             style = MaterialTheme.typography.titleMedium,
@@ -126,7 +122,6 @@ import com.example.anyrecordyoulike.ui.theme.SurfaceCol
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Status badge
         if (!vinyl.wishlisted) {
             Surface(
                 color = SurfaceCol,
@@ -144,7 +139,6 @@ import com.example.anyrecordyoulike.ui.theme.SurfaceCol
             Spacer(modifier = Modifier.height(16.dp))
         }
 
-        // Description section
         Text(
             text = "Description",
             style = MaterialTheme.typography.titleMedium,
@@ -165,7 +159,6 @@ import com.example.anyrecordyoulike.ui.theme.SurfaceCol
         Spacer(modifier = Modifier.weight(1f))
         Spacer(modifier = Modifier.height(24.dp))
 
-        // Edit button (if wishlisted, show "Mark as Bought" instead)
         if (vinyl.wishlisted) {
             Button(
                 onClick = onBought,
@@ -193,7 +186,6 @@ import com.example.anyrecordyoulike.ui.theme.SurfaceCol
             Spacer(modifier = Modifier.height(12.dp))
         }
 
-        // Edit button
         OutlinedButton(
             onClick = onEdit,
             modifier = Modifier
@@ -221,7 +213,6 @@ import com.example.anyrecordyoulike.ui.theme.SurfaceCol
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        // Delete button
         Button(
             onClick = onDelete,
             modifier = Modifier

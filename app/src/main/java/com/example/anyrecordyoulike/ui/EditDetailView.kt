@@ -139,7 +139,6 @@ fun EditDetailView(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Image URL field
         Text(
             text = "Image URL",
             style = MaterialTheme.typography.titleSmall,
@@ -166,7 +165,6 @@ fun EditDetailView(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Description field
         Text(
             text = "Description",
             style = MaterialTheme.typography.titleSmall,
@@ -196,7 +194,6 @@ fun EditDetailView(
         Spacer(modifier = Modifier.weight(1f))
         Spacer(modifier = Modifier.height(24.dp))
 
-        // Save button
         Button(
             onClick = {
                 val updatedVinyl = vinyl.copy(

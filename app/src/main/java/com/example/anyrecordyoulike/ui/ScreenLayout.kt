@@ -36,8 +36,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.anyrecordyoulike.TabFilter
-import com.example.anyrecordyoulike.TabRow
+import com.example.anyrecordyoulike.ui.navigation.TabFilter
+import com.example.anyrecordyoulike.ui.navigation.TabRow
 import com.example.anyrecordyoulike.ui.theme.PrimaryActionCol
 import com.example.anyrecordyoulike.ui.theme.PrimaryTextCol
 import com.example.anyrecordyoulike.ui.theme.SecondaryTextCol
