@@ -15,7 +15,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -57,7 +56,6 @@ fun EditDetailView(
             .background(BackgroundCol)
             .verticalScroll(rememberScrollState())
     ) {
-        // Top bar
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -85,7 +83,6 @@ fun EditDetailView(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Title field
         Text(
             text = "Title",
             style = MaterialTheme.typography.titleSmall,
@@ -112,7 +109,7 @@ fun EditDetailView(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Artist field
+
         Text(
             text = "Artist",
             style = MaterialTheme.typography.titleSmall,
