@@ -1,4 +1,4 @@
-package com.example.anyrecordyoulike.ui.theme
+package com.example.anyrecordyoulike.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -30,11 +30,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
-import com.example.anyrecordyoulike.ui.Like
 import com.example.anyrecordyoulike.data.Vinyl
+import com.example.anyrecordyoulike.ui.theme.PrimaryActionCol
+import com.example.anyrecordyoulike.ui.theme.PrimaryTextCol
+import com.example.anyrecordyoulike.ui.theme.SecondaryTextCol
+import com.example.anyrecordyoulike.ui.theme.SurfaceCol
 
 @Composable
-fun RecordBlock(record: Vinyl, onClick: () -> Unit, onDelete: () -> Unit, onFavorite: () -> Unit) {
+fun RecordBlock(record: Vinyl, onClick: () -> Unit, onFavorite: () -> Unit) {
     Card(
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White),

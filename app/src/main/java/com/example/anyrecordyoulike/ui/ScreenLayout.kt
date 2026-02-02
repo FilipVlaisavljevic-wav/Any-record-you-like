@@ -44,7 +44,6 @@ import com.example.anyrecordyoulike.ui.theme.SecondaryTextCol
 import com.example.anyrecordyoulike.ui.theme.SurfaceCol
 import com.example.anyrecordyoulike.data.model.RecordModel
 import com.example.anyrecordyoulike.ui.theme.BackgroundCol
-import com.example.anyrecordyoulike.ui.theme.RecordBlock
 
 @Composable
 fun ScreenLayout(viewModel: RecordModel, navController: NavController) {
@@ -119,7 +118,6 @@ fun ScreenLayout(viewModel: RecordModel, navController: NavController) {
                     RecordBlock(
                         record = record,
                         onClick = { navController.navigate("detail/${record.id}") },
-                        onDelete = { viewModel.removeRecord(record.id) },
                         onFavorite = { viewModel.toggleFavorite(record) }
                     )
                 }
